@@ -5,9 +5,10 @@
 
 [node name="Game" type="Node2D"]
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(184, -94)
+texture = ExtResource("3_y6e1v")
+
 [node name="Player" parent="." instance=ExtResource("1_16u2c")]
 position = Vector2(120, 129)
 Speed = 500.0
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_y6e1v")
