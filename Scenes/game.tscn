@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bpde7yllpl5ke"]
+[gd_scene load_steps=8 format=3 uid="uid://bpde7yllpl5ke"]
 
 [ext_resource type="Texture2D" uid="uid://bplgbhk6lcj4o" path="res://Assets/Sprite_background.png" id="1_6x1gr"]
 [ext_resource type="PackedScene" uid="uid://bnnudo1c1h16j" path="res://Scenes/Player.tscn" id="1_16u2c"]
+[ext_resource type="Texture2D" uid="uid://dtnmteuno33wj" path="res://Assets/Sprite_Side.png" id="2_rka3t"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_otofd"]
 a = Vector2(-464, 459)
@@ -21,7 +22,7 @@ b = Vector2(684, -183)
 
 [node name="Game" type="Node2D"]
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 offset_left = -999.0
 offset_top = -374.0
 offset_right = 153.0
@@ -29,6 +30,42 @@ offset_bottom = 266.0
 scale = Vector2(2.04226, 1.71376)
 texture = ExtResource("1_6x1gr")
 stretch_mode = 1
+
+[node name="SideLeft" type="TextureRect" parent="."]
+offset_left = 268.0
+offset_top = 1247.0
+offset_right = 1292.0
+offset_bottom = 2613.0
+rotation = -3.12108
+scale = Vector2(2.72675, 1.41206)
+texture = ExtResource("2_rka3t")
+expand_mode = 1
+
+[node name="SideDown" type="TextureRect" parent="."]
+offset_left = -1153.0
+offset_top = 3319.0
+offset_right = -129.0
+offset_bottom = 4685.0
+rotation = 4.70193
+scale = Vector2(4.22656, 1.94377)
+texture = ExtResource("2_rka3t")
+
+[node name="SideTop" type="TextureRect" parent="."]
+offset_left = -1462.0
+offset_top = -1875.0
+offset_right = -438.0
+offset_bottom = -509.0
+rotation = 1.57148
+scale = Vector2(2.47238, -2.27792)
+texture = ExtResource("2_rka3t")
+
+[node name="SideRight" type="TextureRect" parent="."]
+offset_left = 2973.0
+offset_top = -746.0
+offset_right = 3997.0
+offset_bottom = 620.0
+scale = Vector2(-2.76498, 1.43258)
+texture = ExtResource("2_rka3t")
 
 [node name="Player" parent="." instance=ExtResource("1_16u2c")]
 position = Vector2(87, 97)
@@ -39,7 +76,7 @@ position = Vector2(3.94087, 7.36268)
 scale = Vector2(-2.18165, -2.88972)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(-42, -38)
+position = Vector2(-45, -55)
 scale = Vector2(1.98164, 1.75394)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
