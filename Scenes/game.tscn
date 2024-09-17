@@ -1,13 +1,59 @@
-[gd_scene load_steps=3 format=3 uid="uid://bpde7yllpl5ke"]
+[gd_scene load_steps=7 format=3 uid="uid://bpde7yllpl5ke"]
 
+[ext_resource type="Texture2D" uid="uid://bplgbhk6lcj4o" path="res://Assets/Sprite_background.png" id="1_6x1gr"]
 [ext_resource type="PackedScene" uid="uid://bnnudo1c1h16j" path="res://Scenes/Player.tscn" id="1_16u2c"]
-[ext_resource type="Texture2D" uid="uid://bshm0y2rxbyqa" path="res://icon.svg" id="3_y6e1v"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_otofd"]
+a = Vector2(-464, 459)
+b = Vector2(685, 455)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_o0alk"]
+a = Vector2(-469, 452)
+b = Vector2(-467, -184)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_2l1mx"]
+a = Vector2(-429, -176)
+b = Vector2(721, -176)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_dj2d5"]
+a = Vector2(684, 457)
+b = Vector2(684, -183)
 
 [node name="Game" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_16u2c")]
-position = Vector2(120, 129)
-Speed = 500.0
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -999.0
+offset_top = -374.0
+offset_right = 153.0
+offset_bottom = 266.0
+scale = Vector2(2.04226, 1.71376)
+texture = ExtResource("1_6x1gr")
+stretch_mode = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_y6e1v")
+[node name="Player" parent="." instance=ExtResource("1_16u2c")]
+position = Vector2(87, 97)
+scale = Vector2(5.07502, 5.29699)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(3.94087, 7.36268)
+scale = Vector2(-2.18165, -2.88972)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-42, -38)
+scale = Vector2(1.98164, 1.75394)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1, -21)
+shape = SubResource("SegmentShape2D_otofd")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(16, 7)
+shape = SubResource("SegmentShape2D_o0alk")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-39, 5)
+shape = SubResource("SegmentShape2D_2l1mx")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-16, -3)
+shape = SubResource("SegmentShape2D_dj2d5")
