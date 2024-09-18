@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Build Project",
+            "type": "coreclr",
+            "request": "launch",
+            "program": "C:/Developper/Godot/Engine/Godot_v4.3-stable_mono_win64/Godot_v4.3.exe",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopAtEntry": false,
+            "args": [/*"--editor",*/"--path", "${workspaceRoot}"],
+            "preLaunchTask": "build",
+
+        },
+    ]
+}
