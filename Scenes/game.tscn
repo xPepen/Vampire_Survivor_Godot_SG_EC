@@ -22,17 +22,18 @@ b = Vector2(684, -183)
 [node name="Game" type="Node2D"]
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_left = -999.0
-offset_top = -374.0
-offset_right = 153.0
-offset_bottom = 266.0
-scale = Vector2(2.04226, 1.71376)
+offset_left = -1866.0
+offset_top = -723.0
+offset_right = -716.0
+offset_bottom = -123.0
+scale = Vector2(3.734, 3)
 texture = ExtResource("1_6x1gr")
 stretch_mode = 1
 
 [node name="Player" parent="." instance=ExtResource("1_16u2c")]
 position = Vector2(87, 97)
 scale = Vector2(5.07502, 5.29699)
+Speed = 500.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(3.94087, 7.36268)

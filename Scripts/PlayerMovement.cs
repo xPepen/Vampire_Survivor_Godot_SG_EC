@@ -3,6 +3,8 @@ using Godot;
 public partial class PlayerMovement : CharacterBody2D
 {
 	public AnimatedSprite2D animated_sprite;
+
+	[Export]
 	public float Speed = 300;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
