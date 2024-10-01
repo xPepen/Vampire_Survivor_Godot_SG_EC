@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqpgshpruuvsj"]
+
+[ext_resource type="Script" path="res://Scripts/LoadSceneWithButton.cs" id="1_q8082"]
+
+[node name="MainMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -82.0
+offset_top = -154.0
+offset_right = 83.0
+offset_bottom = 56.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(0, -45.785)
+zoom = Vector2(2, 2)
+
+[node name="Container" type="Container" parent="."]
+layout_mode = 0
+offset_left = -47.0
+offset_top = -105.0
+offset_right = 46.0
+offset_bottom = 92.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Container"]
+layout_mode = 2
+
+[node name="PlayGame_Btn" type="Button" parent="Container/VBoxContainer"]
+layout_mode = 2
+text = "Play Game"
+script = ExtResource("1_q8082")
+ScenePath = "res://Scenes/game.tscn"

@@ -159,3 +159,7 @@ autoplay = "idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, 6)
 shape = SubResource("CircleShape2D_ph18d")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(3.94087, 7.36268)
+scale = Vector2(-2.18165, -2.88972)
