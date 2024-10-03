@@ -20,23 +20,24 @@ a = Vector2(684, 457)
 b = Vector2(684, -183)
 
 [node name="Game" type="Node2D"]
+position = Vector2(-68, -20)
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_left = -1930.0
-offset_top = -531.0
-offset_right = -780.0
-offset_bottom = 69.0
+offset_left = -1950.0
+offset_top = -541.0
+offset_right = -800.0
+offset_bottom = 59.0
 scale = Vector2(3.734, 3)
 texture = ExtResource("1_6x1gr")
 stretch_mode = 1
 
 [node name="Player" parent="." instance=ExtResource("1_16u2c")]
-position = Vector2(87, 97)
+position = Vector2(149, 274)
 scale = Vector2(5.07502, 5.29699)
 Speed = 500.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(-42, -38)
+position = Vector2(-94, 94)
 scale = Vector2(1.98164, 1.75394)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]

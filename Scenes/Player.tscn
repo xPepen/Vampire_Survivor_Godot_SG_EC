@@ -1,8 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://bnnudo1c1h16j"]
+[gd_scene load_steps=26 format=3 uid="uid://bnnudo1c1h16j"]
 
 [ext_resource type="Script" path="res://Scripts/Playermovement.gd" id="1_nxn0a"]
 [ext_resource type="Texture2D" uid="uid://b4foc4xknjmi" path="res://Assets/DemonicFree/IdleCatd.png" id="2_gb8h0"]
 [ext_resource type="Texture2D" uid="uid://dvijsexawacm5" path="res://Assets/DemonicFree/JumpCatd.png" id="3_w7d3b"]
+[ext_resource type="Script" path="res://Scripts/GameMaster.cs" id="4_ctrdj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5ias4"]
 atlas = ExtResource("2_gb8h0")
@@ -146,6 +147,8 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_ph18d"]
 radius = 6.0
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_www0q"]
+
 [node name="Player" type="CharacterBody2D" groups=["Persist"]]
 position = Vector2(1, 0)
 script = ExtResource("1_nxn0a")
@@ -163,3 +166,40 @@ shape = SubResource("CircleShape2D_ph18d")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(3.94087, 7.36268)
 scale = Vector2(-2.18165, -2.88972)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -31.0
+offset_top = -28.0
+offset_right = 9.0
+offset_bottom = 12.0
+script = ExtResource("4_ctrdj")
+
+[node name="Load" type="Button" parent="Control"]
+material = SubResource("CanvasItemMaterial_www0q")
+offset_right = 46.0
+offset_bottom = 31.0
+scale = Vector2(0.493402, 0.382582)
+text = "Load
+"
+
+[node name="Save" type="Button" parent="Control"]
+material = SubResource("CanvasItemMaterial_www0q")
+offset_left = -24.0
+offset_right = 20.0
+offset_bottom = 31.0
+scale = Vector2(0.493402, 0.382582)
+text = "Save
+"
+
+[node name="PositionLabel" type="Label" parent="Control"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 26.0
+offset_top = 1.0
+offset_right = 66.0
+offset_bottom = 24.0
+
+[connection signal="pressed" from="Control/Load" to="Control" method="_on_load_pressed"]
+[connection signal="pressed" from="Control/Save" to="Control" method="_on_save_pressed"]
