@@ -146,7 +146,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_ph18d"]
 radius = 6.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Persist"]]
 position = Vector2(1, 0)
 script = ExtResource("1_nxn0a")
 Speed = 300.0

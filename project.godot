@@ -18,10 +18,15 @@ config/icon="res://icon.svg"
 [autoload]
 
 SceneManager="*res://Scripts/SceneManager.cs"
+GameMaster="*res://Scripts/GameMaster.cs"
 
 [dotnet]
 
 project/assembly_name="Vampire_Survivor_Godot_SG_EC"
+
+[global_group]
+
+Persist=""
 
 [input]
 

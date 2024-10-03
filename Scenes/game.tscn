@@ -22,10 +22,10 @@ b = Vector2(684, -183)
 [node name="Game" type="Node2D"]
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_left = -1866.0
-offset_top = -723.0
-offset_right = -716.0
-offset_bottom = -123.0
+offset_left = -1930.0
+offset_top = -531.0
+offset_right = -780.0
+offset_bottom = 69.0
 scale = Vector2(3.734, 3)
 texture = ExtResource("1_6x1gr")
 stretch_mode = 1
