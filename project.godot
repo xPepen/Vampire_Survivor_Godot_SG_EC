@@ -15,6 +15,10 @@ run/main_scene="res://Scenes/game.tscn"
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameMaster="*res://Scripts/GameMaster.cs"
+
 [dotnet]
 
 project/assembly_name="Vampire_Survivor_Godot_SG_EC"

@@ -9,7 +9,7 @@ func _physics_process(delta) -> void:
 	#IA order is important in order to have the correct behavior
 	var direction = Input.get_vector("IA_Left", "IA_Right", "IA_UP", "IA_Down")
 	# Debug direction
-	print("Direction: ", direction)
+	#print("Direction: ", direction)
 	
 	#Flip the sprite
 	if direction.x > 0:
