@@ -20,11 +20,9 @@ func _physics_process(delta) -> void:
 	# Animation state check
 	if direction.x == 0 and direction.y == 0:
 		if animated_sprite.animation != "idle":
-			print("Switching to idle")
 			animated_sprite.play("idle")
 	else:
 		if animated_sprite.animation != "walk":
-			print("Switching to walk")
 			animated_sprite.play("walk")
 			
 	if direction.x == 0:

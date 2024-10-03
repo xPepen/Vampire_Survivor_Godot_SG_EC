@@ -16,6 +16,7 @@ public class PlayerData
 
 	public void init()
 	{
+		//mettre les donnees quon veut sauvegarder ici
 		sampleDictionary.Add("zero", 0);
 		sampleDictionary.Add("one", 1);
 		sampleDictionary.Add("two", 2);

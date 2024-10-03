@@ -23,6 +23,10 @@ GameMaster="*res://Scripts/GameMaster.cs"
 
 project/assembly_name="Vampire_Survivor_Godot_SG_EC"
 
+[global_group]
+
+Persist=""
+
 [input]
 
 IA_UP={
