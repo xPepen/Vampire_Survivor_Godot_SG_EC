@@ -1,67 +1,58 @@
 using Godot;
 
-public partial class SceneManager : Node
+public partial class SceneManager
 {
+	private readonly Node Root;
+	public SceneManager() { }
 
-	public Node CurrentScene { get; set; }// Called when the node enters the scene tree for the first time.
-
-	public override void _Ready()
+	public SceneManager(Node InRoot)
 	{
-
-		Viewport root = GetTree().GetRoot();
-		CurrentScene = root.GetChild(root.GetChildCount() - 1);
+		Root = InRoot;
 	}
 
-	Viewport GetRoot()
+	public void SetCurrentScene(Node InCurrentScene)
 	{
-		return GetTree().GetRoot();
+		Root.GetTree().SetCurrentScene(InCurrentScene);
+	}
+	public Node GetCurrentScene()
+	{
+		return Root.GetChild(Root.GetChildCount() - 2);
 	}
 
 	public void LoadScene(string Path, bool bIsAdditive)
 	{
-		CallDeferred(nameof(DeferredLoadScene), Path, bIsAdditive);
+		Node NextScene = ResourceLoader.Load<PackedScene>(Path).Instantiate();
+		DeferredLoadScene(NextScene, bIsAdditive);
 	}
-	private void DeferredLoadScene(string Path, bool bIsAdditive)
+	private void DeferredLoadScene(Node NextScene, bool bIsAdditive)
 	{
 		if (bIsAdditive)
 		{
 
-			LoadSceneAdditive(Path);
+			LoadSceneAdditive(NextScene);
 		}
 		else
 		{
-			LoadSceneAbsolute(Path);
+			LoadSceneAbsolute(NextScene);
 		}
 	}
 
-	private void LoadSceneAdditive(string scenePath)
+	private void LoadSceneAdditive(Node NextScene)
 	{
 
-		var nextScene = (PackedScene)GD.Load(scenePath);
-		if (nextScene == null) return;
-		LoadInstance(nextScene);
+		LoadInstance(NextScene);
 	}
 
-	private void LoadSceneAbsolute(string scenePath)
+	private void LoadSceneAbsolute(Node NextScene)
 	{
-		//Clear root
-		CurrentScene.Free();
-		
-		PackedScene nextScene = (PackedScene)GD.Load(scenePath);
-		if (nextScene == null) return;
-		LoadInstance(nextScene);
+		GetCurrentScene().Free();
+		LoadInstance(NextScene);
 
 	}
 
-	private void LoadInstance(PackedScene nextScene)
+	private void LoadInstance(Node NextScene)
 	{
-		//create new scene
-		CurrentScene = nextScene.Instantiate();
-		//setup new scene
-		GetTree().GetRoot().AddChild(CurrentScene);
-		GetTree().SetCurrentScene(CurrentScene);
+		if (NextScene == null) return;
+		Root.AddChild(NextScene);
 	}
-
-
-
 }

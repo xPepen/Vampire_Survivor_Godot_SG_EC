@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public partial class SingletonManager : SceneTree
 {
 
-    private static Dictionary<Type, Node> SingletonInstances;
+    private static Dictionary<Type, object> SingletonInstances;
 
     private SingletonManager()
     {
@@ -24,7 +24,7 @@ public partial class SingletonManager : SceneTree
         return _instance;
     }
 
-    private T GetSingletonInstance<T>() where T : Node, new()
+    private T GetSingletonInstance<T>() where T : class, new()
     {
         if (SingletonInstances.ContainsKey(typeof(T)))
         {
@@ -42,21 +42,24 @@ public partial class SingletonManager : SceneTree
         return GetSingletonInstance<SceneManager>();
     }
 
-    public GameMaster GetGameMaster()
+    public SaveManager GetGameMaster()
     {
-        return GetSingletonInstance<GameMaster>();
+        return GetSingletonInstance<SaveManager>();
     }
 
     public override void _Initialize()
     {
-        SingletonInstances = new Dictionary<Type, Node>();
+        SingletonInstances = new Dictionary<Type, object>();
+
+        //Get access to the root
+        Node Root = this.Root.GetChild(this.Root.GetChildCount() - 1);
 
 
-        Node SceneManager = this.GetRoot().GetNode("SceneManager");
+        object SceneManager = new SceneManager(Root);
         SingletonInstances.Add(typeof(SceneManager), SceneManager);
 
-        Node GameMaster = this.GetRoot().GetNode("GameMaster");
-        SingletonInstances.Add(typeof(SceneManager), GameMaster);
+        Node SaveManager = this.GetRoot().GetNode("SaveManager");
+        SingletonInstances.Add(typeof(SaveManager), SaveManager);
 
         GD.Print($" SingletonManager : Singleton are initialized");
     }
