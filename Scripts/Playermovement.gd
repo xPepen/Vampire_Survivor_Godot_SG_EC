@@ -1,6 +1,6 @@
+
+
 extends CharacterBody2D
-
-
 const JUMP_VELOCITY = -400.0
 @export var Speed = 400.0
 @onready var animated_sprite = $AnimatedSprite2D
@@ -36,3 +36,4 @@ func _physics_process(delta) -> void:
 		velocity.y = direction.y * Speed
 
 	move_and_slide()
+	print("Position du joueur : ", position)

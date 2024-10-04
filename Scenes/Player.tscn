@@ -1,10 +1,10 @@
 [gd_scene load_steps=27 format=3 uid="uid://bnnudo1c1h16j"]
 
-[ext_resource type="Script" path="res://Scripts/Playermovement.gd" id="1_nxn0a"]
+[ext_resource type="Script" path="res://Scripts/PlayerMovement.cs" id="1_x53sh"]
 [ext_resource type="Texture2D" uid="uid://b4foc4xknjmi" path="res://Assets/DemonicFree/IdleCatd.png" id="2_gb8h0"]
 [ext_resource type="Texture2D" uid="uid://dvijsexawacm5" path="res://Assets/DemonicFree/JumpCatd.png" id="3_w7d3b"]
-[ext_resource type="Script" path="res://Scenes/Load.cs" id="4_gjcf6"]
-[ext_resource type="Script" path="res://Scenes/Save.cs" id="5_rluin"]
+[ext_resource type="Script" path="res://Scripts/Load.cs" id="4_gjcf6"]
+[ext_resource type="Script" path="res://Scripts/Save.cs" id="5_rluin"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5ias4"]
 atlas = ExtResource("2_gb8h0")
@@ -152,8 +152,7 @@ radius = 6.0
 
 [node name="Player" type="CharacterBody2D" groups=["Persist"]]
 position = Vector2(1, 0)
-script = ExtResource("1_nxn0a")
-Speed = 300.0
+script = ExtResource("1_x53sh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_p5d0k")

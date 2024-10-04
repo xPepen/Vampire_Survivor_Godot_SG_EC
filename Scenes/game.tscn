@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bpde7yllpl5ke"]
+[gd_scene load_steps=8 format=3 uid="uid://bpde7yllpl5ke"]
 
 [ext_resource type="Texture2D" uid="uid://bplgbhk6lcj4o" path="res://Assets/Sprite_background.png" id="1_6x1gr"]
 [ext_resource type="PackedScene" uid="uid://bnnudo1c1h16j" path="res://Scenes/Player.tscn" id="1_16u2c"]
+[ext_resource type="PackedScene" uid="uid://b0qtu7ep3xmo8" path="res://Scenes/player_position.tscn" id="3_5cne4"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_otofd"]
 a = Vector2(-464, 459)
@@ -34,7 +35,6 @@ stretch_mode = 1
 [node name="Player" parent="." instance=ExtResource("1_16u2c")]
 position = Vector2(149, 274)
 scale = Vector2(5.07502, 5.29699)
-Speed = 500.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(-94, 94)
@@ -55,3 +55,7 @@ shape = SubResource("SegmentShape2D_2l1mx")
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(-16, -3)
 shape = SubResource("SegmentShape2D_dj2d5")
+
+[node name="PlayerPosition" parent="." instance=ExtResource("3_5cne4")]
+position = Vector2(-333, 100)
+scale = Vector2(2, 2.488)
