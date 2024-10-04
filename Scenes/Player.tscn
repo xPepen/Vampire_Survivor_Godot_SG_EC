@@ -1,9 +1,10 @@
-[gd_scene load_steps=26 format=3 uid="uid://bnnudo1c1h16j"]
+[gd_scene load_steps=27 format=3 uid="uid://bnnudo1c1h16j"]
 
 [ext_resource type="Script" path="res://Scripts/Playermovement.gd" id="1_nxn0a"]
 [ext_resource type="Texture2D" uid="uid://b4foc4xknjmi" path="res://Assets/DemonicFree/IdleCatd.png" id="2_gb8h0"]
 [ext_resource type="Texture2D" uid="uid://dvijsexawacm5" path="res://Assets/DemonicFree/JumpCatd.png" id="3_w7d3b"]
-[ext_resource type="Script" path="res://Scripts/GameMaster.cs" id="4_ctrdj"]
+[ext_resource type="Script" path="res://Scenes/Load.cs" id="4_gjcf6"]
+[ext_resource type="Script" path="res://Scenes/Save.cs" id="5_rluin"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5ias4"]
 atlas = ExtResource("2_gb8h0")
@@ -174,32 +175,27 @@ offset_left = -31.0
 offset_top = -28.0
 offset_right = 9.0
 offset_bottom = 12.0
-script = ExtResource("4_ctrdj")
 
 [node name="Load" type="Button" parent="Control"]
 material = SubResource("CanvasItemMaterial_www0q")
+layout_mode = 0
 offset_right = 46.0
 offset_bottom = 31.0
 scale = Vector2(0.493402, 0.382582)
 text = "Load
 "
+script = ExtResource("4_gjcf6")
 
 [node name="Save" type="Button" parent="Control"]
 material = SubResource("CanvasItemMaterial_www0q")
+layout_mode = 0
 offset_left = -24.0
 offset_right = 20.0
 offset_bottom = 31.0
 scale = Vector2(0.493402, 0.382582)
 text = "Save
 "
+script = ExtResource("5_rluin")
 
-[node name="PositionLabel" type="Label" parent="Control"]
-modulate = Color(0, 0, 0, 1)
-layout_mode = 0
-offset_left = 26.0
-offset_top = 1.0
-offset_right = 66.0
-offset_bottom = 24.0
-
-[connection signal="pressed" from="Control/Load" to="Control" method="_on_load_pressed"]
-[connection signal="pressed" from="Control/Save" to="Control" method="_on_save_pressed"]
+[connection signal="pressed" from="Control/Load" to="Control/Load" method="_on_pressed"]
+[connection signal="pressed" from="Control/Save" to="Control/Save" method="_on_pressed"]
