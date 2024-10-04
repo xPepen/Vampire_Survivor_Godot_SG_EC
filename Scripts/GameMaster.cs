@@ -1,112 +1,99 @@
 using Godot;
 using System;
+using Newtonsoft.Json;
 
 public partial class GameMaster : Node
 {
-	public static string gameVersion = "Version 1.0";
-	public static PlayerData playerData = new PlayerData();
-	public string SaveFilePath = "user://savegame.dat"; 
+	public static GameMaster Instance { get; private set; }
+	private const string SaveFilePath = "user://savegame.json";
 
-	public Label positionLabel;
+	private PlayerData playerData;
 
-public override void _Ready()
-{
-	positionLabel = GetNode<Label>("PositionLabel");
-
-	Button saveButton = GetNode<Button>("Control/SaveButton"); // Remplacez par le bon chemin
-	saveButton.Pressed += OnSaveButtonPressed; // Connexion du signal de sauvegarde
-
-	Button loadButton = GetNode<Button>("Control/LoadButton"); // Remplacez par le bon chemin
-	loadButton.Pressed += OnLoadButtonPressed; // Connexion du signal de chargement
-}
-
-
-	public override void _Process(double delta)
+	public override void _Ready()
 	{
-		
-		var player = GetNode<CharacterBody2D>("Game/Player"); 
-		positionLabel.Text = $"Position: {player.GlobalPosition}"; 
+		Instance = this; 
 	}
 
-
-	public void OnSaveButtonPressed()
+	private PlayerMovement GetPlayer(Node currentNode = null)
 	{
-		var player = GetNode<CharacterBody2D>("Game/Player"); 
-		GD.Print("save button fonctionne");
+		if (currentNode == null)
+			currentNode = GetTree().Root;
 
-		
-		playerData.playerPosition = player.GlobalPosition;
+		// Vérifie si ce nœud est le joueur
+		if (currentNode is PlayerMovement player)
+			return player;
 
-		
-		SaveGame();
-		GD.Print("Player position saved: ", playerData.playerPosition);
-	}
-
-	
-	public void OnLoadButtonPressed()
-	{
-		Check(SaveFilePath);
-		GD.Print("load button fonctionne");
-		var player = GetNode<CharacterBody2D>("Game/Player"); 
-		player.GlobalPosition = playerData.playerPosition;
-
-		GD.Print("Player position loaded: ", playerData.playerPosition);
-	}
-
-
-	public void Check(string saveFilePath)
-	{
-		if (FileAccess.FileExists(saveFilePath))
+		// Parcourt tous les enfants de ce nœud
+		foreach (Node child in currentNode.GetChildren())
 		{
-			using (var file = FileAccess.Open(saveFilePath, FileAccess.ModeFlags.Read))
+			var foundPlayer = GetPlayer(child);
+			if (foundPlayer != null)
+				return foundPlayer;
+		}
+
+		return null; 
+	}
+
+	public void SaveGame()
+	{
+		GD.Print("Tentative de récupération du nœud joueur...");
+
+		PlayerMovement player = GetPlayer(); // Utiliser la méthode GetPlayer pour obtenir le nœud Player
+
+		if (player != null)
+		{
+			GD.Print("Joueur récupéré : ", player);
+			GD.Print("Position actuelle du joueur : ", player.Position);
+			
+			playerData = new PlayerData
 			{
-				if (file.GetLength() > 0)
-				{
-					GD.Print("Le fichier contient des données.");
-					LoadGame();
-				}
-				else
-				{
-					GD.Print("Le fichier est vide.");
-					SaveGame(); 
-				}
+				Message = "Loading Réussi!",
+				Position = player.Position
+			};
+
+			using (var file = FileAccess.Open(SaveFilePath, FileAccess.ModeFlags.Write))
+			{
+				string jsonString = JsonConvert.SerializeObject(playerData);
+				file.StoreString(jsonString);
+				GD.Print("Sauvegarde effectuée à la position : ", player.Position);
 			}
 		}
 		else
 		{
-			GD.Print("No save file found. Starting new game.");
-			SaveGame(); // Crée un nouveau fichier de sauvegarde
+			GD.PrintErr("Joueur non trouvé !");
 		}
 	}
 
-	// Sauvegarde les données dans le fichier
-	public void SaveGame()
-	{
-		using (var file = FileAccess.Open(SaveFilePath, FileAccess.ModeFlags.Write))
-		{
-			string jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(playerData);
-			file.StoreString(jsonString); 
-			GD.Print("Game saved!");
-		}
-	}
-
-	// Charge les données à partir du fichier
 	public void LoadGame()
 	{
+		GD.Print("Loading..."); 
+		
 		if (FileAccess.FileExists(SaveFilePath))
 		{
 			using (var file = FileAccess.Open(SaveFilePath, FileAccess.ModeFlags.Read))
 			{
-				string jsonString = file.GetAsText(); 
-				playerData = Newtonsoft.Json.JsonConvert.DeserializeObject<PlayerData>(jsonString);
-				GD.Print("Game loaded! PlayerData: ", Newtonsoft.Json.JsonConvert.SerializeObject(playerData));
+				string jsonString = file.GetAsText();
+				playerData = JsonConvert.DeserializeObject<PlayerData>(jsonString); 
+				
+				GD.Print("Game loaded! PlayerData: ", JsonConvert.SerializeObject(playerData));
+
+				PlayerMovement player = GetPlayer(); // Obtenez le joueur de la même manière
+				if (player != null)
+				{
+					player.Position = playerData.Position; 
+				}
 			}
 		}
 		else
 		{
 			GD.Print("No save file found. Starting new game.");
+			SaveGame(); 
 		}
 	}
+}
 
-
+public class PlayerData
+{
+	public string Message { get; set; }
+	public Vector2 Position { get; set; }
 }
