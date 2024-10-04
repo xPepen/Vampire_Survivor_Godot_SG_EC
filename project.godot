@@ -12,13 +12,14 @@ config_version=5
 
 config/name="Vampire_Survivor_Godot_SG_EC"
 run/main_scene="res://Scenes/MainMenu.tscn"
+run/main_loop_type="SingletonManager"
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-SceneManager="*res://Scripts/SceneManager.cs"
 GameMaster="*res://Scripts/GameMaster.cs"
+SceneManager="*res://Scripts/SceneManager.cs"
 
 [dotnet]
 

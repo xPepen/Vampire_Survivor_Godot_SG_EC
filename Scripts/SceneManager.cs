@@ -12,9 +12,9 @@ public partial class SceneManager : Node
 		CurrentScene = root.GetChild(root.GetChildCount() - 1);
 	}
 
-	//tick
-	public override void _Process(double delta)
+	Viewport GetRoot()
 	{
+		return GetTree().GetRoot();
 	}
 
 	public void LoadScene(string Path, bool bIsAdditive)
@@ -46,7 +46,7 @@ public partial class SceneManager : Node
 	{
 		//Clear root
 		CurrentScene.Free();
-
+		
 		PackedScene nextScene = (PackedScene)GD.Load(scenePath);
 		if (nextScene == null) return;
 		LoadInstance(nextScene);
