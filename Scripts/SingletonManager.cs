@@ -42,9 +42,9 @@ public partial class SingletonManager : SceneTree
         return GetSingletonInstance<SceneManager>();
     }
 
-    public SaveManager GetGameMaster()
+    public GameMaster GetGameMaster()
     {
-        return GetSingletonInstance<SaveManager>();
+        return GetSingletonInstance<GameMaster>();
     }
 
     public override void _Initialize()
@@ -58,8 +58,8 @@ public partial class SingletonManager : SceneTree
         object SceneManager = new SceneManager(Root);
         SingletonInstances.Add(typeof(SceneManager), SceneManager);
 
-        Node SaveManager = this.GetRoot().GetNode("SaveManager");
-        SingletonInstances.Add(typeof(SaveManager), SaveManager);
+        object SaveManager = new GameMaster();
+        SingletonInstances.Add(typeof(GameMaster), SaveManager);
 
         GD.Print($" SingletonManager : Singleton are initialized");
     }

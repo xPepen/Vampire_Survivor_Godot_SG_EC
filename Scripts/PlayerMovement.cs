@@ -9,6 +9,7 @@ public partial class PlayerMovement : CharacterBody2D // Assurez-vous que cette 
 	public override void _Ready()
 	{
 		animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		SingletonManager.Get().GetGameMaster().SetPlayer(this);
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -62,6 +63,15 @@ public partial class PlayerMovement : CharacterBody2D // Assurez-vous que cette 
 
 		MoveAndSlide();
 	}
+
+    public override void _Notification(int what)
+    {
+        base._Notification(what);
+		if(what ==  NotificationExitTree)
+		{
+			SingletonManager.Get().GetGameMaster().SetPlayer(null);
+		}
+    }
 }
 
 

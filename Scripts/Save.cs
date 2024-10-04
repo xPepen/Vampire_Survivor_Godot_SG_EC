@@ -11,6 +11,6 @@ public partial class Save : Button
 	private void OnButtonPressed()
 	{
 		GD.Print("Saving pressed"); 
-		GameMaster.Instance.SaveGame();
+		SingletonManager.Get().GetGameMaster().SaveGame();
 	}
 }

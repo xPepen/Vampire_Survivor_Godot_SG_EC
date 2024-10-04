@@ -12,7 +12,7 @@ public partial class Load : Button
 	{
 		
 		GD.Print("Bouton Load pressé !");
-		GameMaster.Instance.LoadGame();
+		SingletonManager.Get().GetGameMaster().LoadGame();
 		
 	}
 }
