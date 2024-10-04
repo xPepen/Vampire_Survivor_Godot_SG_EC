@@ -24,7 +24,7 @@ public partial class SingletonManager : SceneTree
         return _instance;
     }
 
-    private T GetSingletonInstance<T>() where T : class, new()
+    public T GetSingletonInstance<T>() where T : class, new()
     {
         if (SingletonInstances.ContainsKey(typeof(T)))
         {
@@ -60,6 +60,10 @@ public partial class SingletonManager : SceneTree
 
         object SaveManager = new GameMaster();
         SingletonInstances.Add(typeof(GameMaster), SaveManager);
+
+        object PlayerController = new PlayerController();
+        SingletonInstances.Add(typeof(GameMaster), PlayerController);
+
 
         GD.Print($" SingletonManager : Singleton are initialized");
     }

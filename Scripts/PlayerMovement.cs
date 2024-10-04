@@ -10,6 +10,7 @@ public partial class PlayerMovement : CharacterBody2D // Assurez-vous que cette 
 	{
 		animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		SingletonManager.Get().GetGameMaster().SetPlayer(this);
+		SingletonManager.Get().GetSingletonInstance<PlayerController>().SetNewController(this);
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -64,14 +65,15 @@ public partial class PlayerMovement : CharacterBody2D // Assurez-vous que cette 
 		MoveAndSlide();
 	}
 
-    public override void _Notification(int what)
-    {
-        base._Notification(what);
-		if(what ==  NotificationExitTree)
+	public override void _Notification(int what)
+	{
+		base._Notification(what);
+		if (what == NotificationExitTree)
 		{
 			SingletonManager.Get().GetGameMaster().SetPlayer(null);
+			SingletonManager.Get().GetSingletonInstance<PlayerController>().ClearController();
 		}
-    }
+	}
 }
 
 
