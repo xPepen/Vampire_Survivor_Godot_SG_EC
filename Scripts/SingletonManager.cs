@@ -62,7 +62,7 @@ public partial class SingletonManager : SceneTree
         SingletonInstances.Add(typeof(GameMaster), SaveManager);
 
         object PlayerController = new PlayerController();
-        SingletonInstances.Add(typeof(GameMaster), PlayerController);
+        SingletonInstances.Add(typeof(PlayerController), PlayerController);
 
 
         GD.Print($" SingletonManager : Singleton are initialized");
