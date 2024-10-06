@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bpde7yllpl5ke"]
+[gd_scene load_steps=9 format=3 uid="uid://bpde7yllpl5ke"]
 
 [ext_resource type="Texture2D" uid="uid://bplgbhk6lcj4o" path="res://Assets/Sprite_background.png" id="1_6x1gr"]
 [ext_resource type="PackedScene" uid="uid://bnnudo1c1h16j" path="res://Scenes/Player.tscn" id="1_16u2c"]
 [ext_resource type="PackedScene" uid="uid://b0qtu7ep3xmo8" path="res://Scenes/player_position.tscn" id="3_5cne4"]
+[ext_resource type="Texture2D" uid="uid://tcvuaup6wxsa" path="res://Assets/IMG_0350_cropped.png" id="4_h7i1v"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_otofd"]
 a = Vector2(-464, 459)
@@ -25,9 +26,9 @@ position = Vector2(-68, -20)
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = -1950.0
-offset_top = -541.0
-offset_right = -800.0
-offset_bottom = 59.0
+offset_top = -1074.0
+offset_right = -717.0
+offset_bottom = -148.0
 scale = Vector2(3.734, 3)
 texture = ExtResource("1_6x1gr")
 stretch_mode = 1
@@ -59,3 +60,26 @@ shape = SubResource("SegmentShape2D_dj2d5")
 [node name="PlayerPosition" parent="." instance=ExtResource("3_5cne4")]
 position = Vector2(-333, 100)
 scale = Vector2(2, 2.488)
+
+[node name="Img0350Cropped" type="Sprite2D" parent="."]
+position = Vector2(-1318, 389)
+scale = Vector2(20, 15)
+texture = ExtResource("4_h7i1v")
+
+[node name="Img0350Cropped2" type="Sprite2D" parent="."]
+position = Vector2(1590, 344)
+rotation = -3.14159
+scale = Vector2(20, 15)
+texture = ExtResource("4_h7i1v")
+
+[node name="Img0350Cropped3" type="Sprite2D" parent="."]
+position = Vector2(117, -520)
+rotation = 1.5708
+scale = Vector2(20, 20)
+texture = ExtResource("4_h7i1v")
+
+[node name="Img0350Cropped4" type="Sprite2D" parent="."]
+position = Vector2(136, 1188)
+rotation = -1.5708
+scale = Vector2(20, 20)
+texture = ExtResource("4_h7i1v")
